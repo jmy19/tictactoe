@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+  <title>Tic Tac Toe</title>
+  
+</head>
+
+<body>
+  <style>
+  td {
+  border: 10px black solid;
+  width: 200px;
+  height: 200px;
+  font-size: 75px;
+  text-align: center;
+}
+</style>
+
+<table>
+  <tr>
+    <td id="box1"></td>
+    <td id="box2"></td>
+    <td id="box3"></td>
+  </tr>
+  <tr>
+    <td id="box4"></td>
+    <td id="box5"></td>
+    <td id="box6"></td>
+  </tr>
+  <tr>
+    <td id="box7"></td>
+    <td id="box8"></td>
+    <td id="box9"></td>
+  </tr>
+</table>
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.0/lodash.min.js"></script>
+
+<script type="text/javascript">
+
+function allX(){
+  return $('td').filter('.X').map(function() { return parseInt(this.id) })
+}
+
+function allO() {
+  return $('td').filter('.O').map(function() { return parseInt(this.id) })
+}
+
+// http://stackoverflow.com/questions/9204283/how-to-check-whether-multiple-values-exist-within-an-javascript-array
+function containsAll(needles, haystack){ 
+  for(var i = 0 , len = needles.length; i < len; i++){
+     if($.inArray(needles[i], haystack) == -1) return false;
+  }
+  return true;
+}
+
+function checkWinX(){
+    if ($( "#box1" ).hasClass( "X" ) && $( "#box2" ).hasClass( "X" ) && $( "#box3" ).hasClass( "X" )){
+    return true
+  } else if ($( "#box4" ).hasClass( "X" ) && $( "#box5" ).hasClass( "X" ) && $( "#box6" ).hasClass( "X" )){
+    return true
+  } else if ($( "#box7" ).hasClass( "X" ) && $( "#box8" ).hasClass( "X" ) && $( "#box9" ).hasClass( "X" )){
+    return true
+  } else if ($( "#box1" ).hasClass( "X" ) && $( "#box4" ).hasClass( "X" ) && $( "#box7" ).hasClass( "X" )){
+    return true
+  } else if ($( "#box2" ).hasClass( "X" ) && $( "#box5" ).hasClass( "X" ) && $( "#box8" ).hasClass( "X" )){
+    return true
+  } else if ($( "#box3" ).hasClass( "X" ) && $( "#box6" ).hasClass( "X" ) && $( "#box9" ).hasClass( "X" )){
+    return true
+  } else if ($( "#box1" ).hasClass( "X" ) && $( "#box5" ).hasClass( "X" ) && $( "#box9" ).hasClass( "X" )){
+    return true
+  } else if ($( "#box3" ).hasClass( "X" ) && $( "#box5" ).hasClass( "X" ) && $( "#box7" ).hasClass( "X" )){
+    return true  
+  }}
+
+  function checkWinO(){
+    if ($( "#box1" ).hasClass( "O" ) && $( "#box2" ).hasClass( "O" ) && $( "#box3" ).hasClass( "O" )){
+    return true
+  } else if ($( "#box4" ).hasClass( "O" ) && $( "#box5" ).hasClass( "O" ) && $( "#box6" ).hasClass( "O" )){
+    return true
+  } else if ($( "#box7" ).hasClass( "O" ) && $( "#box8" ).hasClass( "O" ) && $( "#box9" ).hasClass( "O" )){
+    return true
+  } else if ($( "#box1" ).hasClass( "O" ) && $( "#box4" ).hasClass( "O" ) && $( "#box7" ).hasClass( "O" )){
+    return true
+  } else if ($( "#box2" ).hasClass( "O" ) && $( "#box5" ).hasClass( "O" ) && $( "#box8" ).hasClass( "O" )){
+    return true
+  } else if ($( "#box3" ).hasClass( "O" ) && $( "#box6" ).hasClass( "O" ) && $( "#box9" ).hasClass( "O" )){
+    return true
+  } else if ($( "#box1" ).hasClass( "O" ) && $( "#box5" ).hasClass( "O" ) && $( "#box9" ).hasClass( "O" )){
+    return true
+  } else if ($( "#box3" ).hasClass( "O" ) && $( "#box5" ).hasClass( "O" ) && $( "#box7" ).hasClass( "O" )){
+    return true  
+  }}
+
+  $(document).ready(function(){
+    var turn = 1;
+
+    $('td').on('click', function(){
+      var self = $(this);
+      if(turn % 2 === 0) {
+        self.text("O");
+        self.addClass("O");
+      } else {
+        self.text("X");
+        self.addClass("X");
+      }
+      turn++;
+      if (checkWinX()) {
+        alert("X wins")
+        self.off('click')
+      } else if (checkWinO()) {
+        alert("X wins")
+        self.off('click')
+      }
+    });
+  });
+
+
+
+</script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</body>
+</html>
